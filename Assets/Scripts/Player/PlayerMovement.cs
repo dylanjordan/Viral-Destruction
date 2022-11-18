@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            _maxSpeed = _walkSpeed;
+            Sprint();
         }
     }
 
