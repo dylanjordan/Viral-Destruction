@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour
             return _instance;
         }
     }
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -27,6 +28,7 @@ public class InputManager : MonoBehaviour
 
         _movement = new PlayerInput();
     }
+
     private void OnEnable()
     {
         _movement.Enable();
@@ -52,5 +54,29 @@ public class InputManager : MonoBehaviour
         return _movement.Movement.Jump.triggered;
     }
 
-    
+    public bool GetSprint()
+    {
+        if (_movement.MovementEffects.SprintEnabled.IsPressed())
+        {
+            return true;
+        }
+        if (_movement.MovementEffects.SprintDisabled.WasReleasedThisFrame())
+        {
+            return false;
+        }
+        return false;
+    }
+
+    public bool GetCrouch()
+    {
+        if (_movement.MovementEffects.CrouchEnable.IsPressed())
+        {
+            return true;
+        }
+        if (_movement.MovementEffects.CrouchDisable.WasReleasedThisFrame())
+        {
+            return false;
+        }
+        return false;
+    }
 }

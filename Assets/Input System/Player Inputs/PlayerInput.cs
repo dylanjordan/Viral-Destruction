@@ -211,6 +211,138 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MovementEffects"",
+            ""id"": ""43776d17-e572-4af4-9c9a-1dd75d7bfa4a"",
+            ""actions"": [
+                {
+                    ""name"": ""SprintEnabled"",
+                    ""type"": ""Button"",
+                    ""id"": ""8dd553e2-d9f4-4755-a819-736cf9136e79"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SprintDisabled"",
+                    ""type"": ""Button"",
+                    ""id"": ""8fba9cf3-7000-4f50-af2c-26e3172e59ab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CrouchEnable"",
+                    ""type"": ""Button"",
+                    ""id"": ""523baf88-302a-4cc6-a5da-b4e35150dc01"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CrouchDisable"",
+                    ""type"": ""Button"",
+                    ""id"": ""02824e58-0bec-4aef-b38b-ba618933414c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d60f4ad8-250b-4263-9eca-f55a969b477a"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SprintDisabled"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""412c2e31-5086-4677-a62a-915a293c452e"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SprintDisabled"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76039012-20d6-4adc-890a-c279c9df86a9"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SprintEnabled"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2565274d-b5a2-4ce6-8596-10142d523bed"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SprintEnabled"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7709a411-3bb1-4e15-a9e9-9a58ca556d66"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CrouchEnable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""095aec14-1e85-412d-a3bf-3a62025b7a33"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CrouchEnable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61307412-51ff-4d1f-8183-fdc1f393de4b"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CrouchDisable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55ed7f65-1582-469c-9d28-2442eeafa72a"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CrouchDisable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -220,6 +352,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Movement_Movement = m_Movement.FindAction("Movement", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Look = m_Movement.FindAction("Look", throwIfNotFound: true);
+        // MovementEffects
+        m_MovementEffects = asset.FindActionMap("MovementEffects", throwIfNotFound: true);
+        m_MovementEffects_SprintEnabled = m_MovementEffects.FindAction("SprintEnabled", throwIfNotFound: true);
+        m_MovementEffects_SprintDisabled = m_MovementEffects.FindAction("SprintDisabled", throwIfNotFound: true);
+        m_MovementEffects_CrouchEnable = m_MovementEffects.FindAction("CrouchEnable", throwIfNotFound: true);
+        m_MovementEffects_CrouchDisable = m_MovementEffects.FindAction("CrouchDisable", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -324,10 +462,74 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         }
     }
     public MovementActions @Movement => new MovementActions(this);
+
+    // MovementEffects
+    private readonly InputActionMap m_MovementEffects;
+    private IMovementEffectsActions m_MovementEffectsActionsCallbackInterface;
+    private readonly InputAction m_MovementEffects_SprintEnabled;
+    private readonly InputAction m_MovementEffects_SprintDisabled;
+    private readonly InputAction m_MovementEffects_CrouchEnable;
+    private readonly InputAction m_MovementEffects_CrouchDisable;
+    public struct MovementEffectsActions
+    {
+        private @PlayerInput m_Wrapper;
+        public MovementEffectsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SprintEnabled => m_Wrapper.m_MovementEffects_SprintEnabled;
+        public InputAction @SprintDisabled => m_Wrapper.m_MovementEffects_SprintDisabled;
+        public InputAction @CrouchEnable => m_Wrapper.m_MovementEffects_CrouchEnable;
+        public InputAction @CrouchDisable => m_Wrapper.m_MovementEffects_CrouchDisable;
+        public InputActionMap Get() { return m_Wrapper.m_MovementEffects; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MovementEffectsActions set) { return set.Get(); }
+        public void SetCallbacks(IMovementEffectsActions instance)
+        {
+            if (m_Wrapper.m_MovementEffectsActionsCallbackInterface != null)
+            {
+                @SprintEnabled.started -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnSprintEnabled;
+                @SprintEnabled.performed -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnSprintEnabled;
+                @SprintEnabled.canceled -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnSprintEnabled;
+                @SprintDisabled.started -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnSprintDisabled;
+                @SprintDisabled.performed -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnSprintDisabled;
+                @SprintDisabled.canceled -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnSprintDisabled;
+                @CrouchEnable.started -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouchEnable;
+                @CrouchEnable.performed -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouchEnable;
+                @CrouchEnable.canceled -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouchEnable;
+                @CrouchDisable.started -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouchDisable;
+                @CrouchDisable.performed -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouchDisable;
+                @CrouchDisable.canceled -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouchDisable;
+            }
+            m_Wrapper.m_MovementEffectsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @SprintEnabled.started += instance.OnSprintEnabled;
+                @SprintEnabled.performed += instance.OnSprintEnabled;
+                @SprintEnabled.canceled += instance.OnSprintEnabled;
+                @SprintDisabled.started += instance.OnSprintDisabled;
+                @SprintDisabled.performed += instance.OnSprintDisabled;
+                @SprintDisabled.canceled += instance.OnSprintDisabled;
+                @CrouchEnable.started += instance.OnCrouchEnable;
+                @CrouchEnable.performed += instance.OnCrouchEnable;
+                @CrouchEnable.canceled += instance.OnCrouchEnable;
+                @CrouchDisable.started += instance.OnCrouchDisable;
+                @CrouchDisable.performed += instance.OnCrouchDisable;
+                @CrouchDisable.canceled += instance.OnCrouchDisable;
+            }
+        }
+    }
+    public MovementEffectsActions @MovementEffects => new MovementEffectsActions(this);
     public interface IMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+    }
+    public interface IMovementEffectsActions
+    {
+        void OnSprintEnabled(InputAction.CallbackContext context);
+        void OnSprintDisabled(InputAction.CallbackContext context);
+        void OnCrouchEnable(InputAction.CallbackContext context);
+        void OnCrouchDisable(InputAction.CallbackContext context);
     }
 }

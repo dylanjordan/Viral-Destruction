@@ -353,8 +353,10 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  _walkSpeed: 10
+  _sprintSpeed: 20
   _acceleration: 15
-  _maxSpeed: 10
+  _deceleration: 10
   _gravity: -12
   _jumpHeight: 1
   disToGround: 0.4
@@ -683,7 +685,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1899502942
 GameObject:
@@ -727,5 +729,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
