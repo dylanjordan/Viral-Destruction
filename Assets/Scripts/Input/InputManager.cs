@@ -69,14 +69,6 @@ public class InputManager : MonoBehaviour
 
     public bool GetCrouch()
     {
-        if (_movement.MovementEffects.CrouchEnable.IsPressed())
-        {
-            return true;
-        }
-        if (_movement.MovementEffects.CrouchDisable.WasReleasedThisFrame())
-        {
-            return false;
-        }
-        return false;
+        return _movement.MovementEffects.Crouch.triggered;
     }
 }

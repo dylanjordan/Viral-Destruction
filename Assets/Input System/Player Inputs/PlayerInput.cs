@@ -235,18 +235,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""CrouchEnable"",
+                    ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""523baf88-302a-4cc6-a5da-b4e35150dc01"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""CrouchDisable"",
-                    ""type"": ""Button"",
-                    ""id"": ""02824e58-0bec-4aef-b38b-ba618933414c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -305,7 +296,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CrouchEnable"",
+                    ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -316,29 +307,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CrouchEnable"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""61307412-51ff-4d1f-8183-fdc1f393de4b"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CrouchDisable"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""55ed7f65-1582-469c-9d28-2442eeafa72a"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CrouchDisable"",
+                    ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -356,8 +325,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_MovementEffects = asset.FindActionMap("MovementEffects", throwIfNotFound: true);
         m_MovementEffects_SprintEnabled = m_MovementEffects.FindAction("SprintEnabled", throwIfNotFound: true);
         m_MovementEffects_SprintDisabled = m_MovementEffects.FindAction("SprintDisabled", throwIfNotFound: true);
-        m_MovementEffects_CrouchEnable = m_MovementEffects.FindAction("CrouchEnable", throwIfNotFound: true);
-        m_MovementEffects_CrouchDisable = m_MovementEffects.FindAction("CrouchDisable", throwIfNotFound: true);
+        m_MovementEffects_Crouch = m_MovementEffects.FindAction("Crouch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -468,16 +436,14 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private IMovementEffectsActions m_MovementEffectsActionsCallbackInterface;
     private readonly InputAction m_MovementEffects_SprintEnabled;
     private readonly InputAction m_MovementEffects_SprintDisabled;
-    private readonly InputAction m_MovementEffects_CrouchEnable;
-    private readonly InputAction m_MovementEffects_CrouchDisable;
+    private readonly InputAction m_MovementEffects_Crouch;
     public struct MovementEffectsActions
     {
         private @PlayerInput m_Wrapper;
         public MovementEffectsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @SprintEnabled => m_Wrapper.m_MovementEffects_SprintEnabled;
         public InputAction @SprintDisabled => m_Wrapper.m_MovementEffects_SprintDisabled;
-        public InputAction @CrouchEnable => m_Wrapper.m_MovementEffects_CrouchEnable;
-        public InputAction @CrouchDisable => m_Wrapper.m_MovementEffects_CrouchDisable;
+        public InputAction @Crouch => m_Wrapper.m_MovementEffects_Crouch;
         public InputActionMap Get() { return m_Wrapper.m_MovementEffects; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -493,12 +459,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @SprintDisabled.started -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnSprintDisabled;
                 @SprintDisabled.performed -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnSprintDisabled;
                 @SprintDisabled.canceled -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnSprintDisabled;
-                @CrouchEnable.started -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouchEnable;
-                @CrouchEnable.performed -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouchEnable;
-                @CrouchEnable.canceled -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouchEnable;
-                @CrouchDisable.started -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouchDisable;
-                @CrouchDisable.performed -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouchDisable;
-                @CrouchDisable.canceled -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouchDisable;
+                @Crouch.started -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouch;
+                @Crouch.performed -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouch;
+                @Crouch.canceled -= m_Wrapper.m_MovementEffectsActionsCallbackInterface.OnCrouch;
             }
             m_Wrapper.m_MovementEffectsActionsCallbackInterface = instance;
             if (instance != null)
@@ -509,12 +472,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @SprintDisabled.started += instance.OnSprintDisabled;
                 @SprintDisabled.performed += instance.OnSprintDisabled;
                 @SprintDisabled.canceled += instance.OnSprintDisabled;
-                @CrouchEnable.started += instance.OnCrouchEnable;
-                @CrouchEnable.performed += instance.OnCrouchEnable;
-                @CrouchEnable.canceled += instance.OnCrouchEnable;
-                @CrouchDisable.started += instance.OnCrouchDisable;
-                @CrouchDisable.performed += instance.OnCrouchDisable;
-                @CrouchDisable.canceled += instance.OnCrouchDisable;
+                @Crouch.started += instance.OnCrouch;
+                @Crouch.performed += instance.OnCrouch;
+                @Crouch.canceled += instance.OnCrouch;
             }
         }
     }
@@ -529,7 +489,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnSprintEnabled(InputAction.CallbackContext context);
         void OnSprintDisabled(InputAction.CallbackContext context);
-        void OnCrouchEnable(InputAction.CallbackContext context);
-        void OnCrouchDisable(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
     }
 }

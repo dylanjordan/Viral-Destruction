@@ -213,18 +213,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CrouchEnable",
+                    "name": "Crouch",
                     "type": "Button",
                     "id": "523baf88-302a-4cc6-a5da-b4e35150dc01",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "CrouchDisable",
-                    "type": "Button",
-                    "id": "02824e58-0bec-4aef-b38b-ba618933414c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -283,7 +274,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CrouchEnable",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -294,29 +285,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CrouchEnable",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "61307412-51ff-4d1f-8183-fdc1f393de4b",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CrouchDisable",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "55ed7f65-1582-469c-9d28-2442eeafa72a",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CrouchDisable",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
