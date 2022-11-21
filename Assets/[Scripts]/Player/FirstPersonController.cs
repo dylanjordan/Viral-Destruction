@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class FirstPersonController : MonoBehaviour
+public class FirstPersonController : MonoBehaviour, IDataPersistence
 {
     public bool CanMove { get; private set; } = true;
     private bool IsSprinting => canSprint && input.GetSprint();
@@ -30,9 +30,9 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float crouchStepMultiplier = 1.5f;
     [SerializeField] private float sprintStepMutliplier = 0.6f;
     [SerializeField] private AudioSource footstepAudioSource = default;
-    [SerializeField] private AudioClip[] woodClips= default;
-    [SerializeField] private AudioClip[] metalClips= default;
-    [SerializeField] private AudioClip[] grassClips= default;
+    [SerializeField] private AudioClip[] woodClips = default;
+    [SerializeField] private AudioClip[] metalClips = default;
+    [SerializeField] private AudioClip[] grassClips = default;
     private float footstepTimer = 0;
     private float GetCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : IsSprinting ? baseStepSpeed * sprintStepMutliplier : baseStepSpeed;
 
@@ -76,6 +76,17 @@ public class FirstPersonController : MonoBehaviour
     private float defaultYPos = 0;
     private float timer;
 
+    public void LoadData(GameData data)
+    {
+        this.transform.position = data.playerPosition;
+        this.currentHealth = data.playerCurrentHealth;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.playerPosition = this.transform.position;
+        data.playerCurrentHealth = this.currentHealth;
+    }
     // SLIDING PARAMETERS
     private Vector3 hitPointNormal;
 
@@ -125,7 +136,6 @@ public class FirstPersonController : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
         defaultYPos = playerCamera.transform.localPosition.y;
-        currentHealth = maxHealth;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -210,7 +220,7 @@ public class FirstPersonController : MonoBehaviour
             return;
 
         // Check if player is moving
-        if(Mathf.Abs(moveDirection.x) > 0.1f || Mathf.Abs(moveDirection.z) > 0.1f)
+        if (Mathf.Abs(moveDirection.x) > 0.1f || Mathf.Abs(moveDirection.z) > 0.1f)
         {
             // Determine headbob speed & amount : Apply
             timer += Time.deltaTime * (isCrouching ? crouchBobSpeed : IsSprinting ? sprintBobSpeed : walkBobSpeed);
@@ -247,7 +257,7 @@ public class FirstPersonController : MonoBehaviour
     private void HandleInteractionInput()
     {
         // Check if looking at interactable & input
-        if (input.GetInteract() && currentInteractable != null && 
+        if (input.GetInteract() && currentInteractable != null &&
             Physics.Raycast(playerCamera.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance, interactionLayer))
         {
             currentInteractable.OnInteract();
@@ -301,7 +311,7 @@ public class FirstPersonController : MonoBehaviour
 
         regeneratingHealth = StartCoroutine(RegenerateHealth()); // Restart regen
     }
-    
+
     private void KillPlayer()
     {
         currentHealth = 0;
@@ -346,7 +356,7 @@ public class FirstPersonController : MonoBehaviour
         Vector3 currentCenter = characterController.center;
 
         // Lerp height and center
-        while(timeElapsed < timeToCrouch)
+        while (timeElapsed < timeToCrouch)
         {
             characterController.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
             characterController.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
