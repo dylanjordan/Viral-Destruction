@@ -72,12 +72,12 @@ public class InputManager : MonoBehaviour
 
     public bool GetADSEnable()
     {
-        return _playerControls.Weapons.ADS.WasPressedThisFrame();
-    }
+        if (_playerControls.Weapons.ADS.IsPressed())
+            return true;
+        if (_playerControls.Weapons.ADS.WasReleasedThisFrame())
+            return false;
 
-    public bool GetADSDisable()
-    {
-        return _playerControls.Weapons.ADS.WasReleasedThisFrame();
+        return false;
     }
 
     public bool GetShooting()

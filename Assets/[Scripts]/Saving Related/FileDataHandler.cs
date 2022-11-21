@@ -18,7 +18,7 @@ public class FileDataHandler
 
     public GameData Load()
     {
-
+        
     }
 
     public void Save(GameData data)
