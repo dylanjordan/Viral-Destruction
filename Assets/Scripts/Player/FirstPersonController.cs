@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -14,6 +15,9 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private bool canCrouch = true;
     [SerializeField] private bool canUseHeadbob = true;
     [SerializeField] private bool willSlideOnSlopes = true;
+    [SerializeField] private bool canZoom = true;
+    [SerializeField] private bool canInteract = true;
+    [SerializeField] private bool useFootsteps = true;
 
     [Header("Movement Parameters")]
     [SerializeField] private float walkSpeed = 3.0f;
@@ -21,11 +25,33 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float crouchSpeed = 1.5f;
     [SerializeField] private float slopeSpeed = 8.0f;
 
+    [Header("Footstep Parameters")]
+    [SerializeField] private float baseStepSpeed = 0.5f;
+    [SerializeField] private float crouchStepMultiplier = 1.5f;
+    [SerializeField] private float sprintStepMutliplier = 0.6f;
+    [SerializeField] private AudioSource footstepAudioSource = default;
+    [SerializeField] private AudioClip[] woodClips= default;
+    [SerializeField] private AudioClip[] metalClips= default;
+    [SerializeField] private AudioClip[] grassClips= default;
+    private float footstepTimer = 0;
+    private float GetCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : IsSprinting ? baseStepSpeed * sprintStepMutliplier : baseStepSpeed;
+
     [Header("Look Parameters")]
-    [SerializeField, Range(1, 100)] private float lookSpeedX = 2.0f;
-    [SerializeField, Range(1, 100)] private float lookSpeedY = 2.0f;
+    [SerializeField, Range(1, 10)] private float lookSpeedX = 2.0f;
+    [SerializeField, Range(1, 10)] private float lookSpeedY = 2.0f;
     [SerializeField, Range(1, 180)] private float upperLookLimit = 80.0f;
     [SerializeField, Range(1, 180)] private float lowerLookLimit = 80.0f;
+
+    [Header("Health Parameters")]
+    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float timeBeforeRegenStarts = 3;
+    [SerializeField] private float healthValueIncrement = 1;
+    [SerializeField] private float healthTimeIncrement = 0.1f;
+    private float currentHealth;
+    private Coroutine regeneratingHealth;
+    public static Action<float> OnTakeDamage;
+    public static Action<float> OnDamage;
+    public static Action<float> OnHeal;
 
     [Header("Jumping Parameters")]
     [SerializeField] private float jumpForce = 8.0f;
@@ -50,6 +76,12 @@ public class FirstPersonController : MonoBehaviour
     private float defaultYPos = 0;
     private float timer;
 
+    [Header("Zoom Parameters")]
+    [SerializeField] private float timeToZoom = 0.3f;
+    [SerializeField] private float zoomFOV = 30f;
+    private float defaultFOV;
+    private Coroutine zoomRoutine;
+
     // SLIDING PARAMETERS
     private Vector3 hitPointNormal;
 
@@ -69,6 +101,12 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
+    [Header("Interaction")]
+    [SerializeField] private Vector3 interactionRayPoint = default;
+    [SerializeField] private float interactionDistance = default;
+    [SerializeField] private LayerMask interactionLayer = default;
+    private Interactable currentInteractable;
+
     private Camera playerCamera;
     private CharacterController characterController;
     private InputManager input;
@@ -78,11 +116,23 @@ public class FirstPersonController : MonoBehaviour
 
     private float rotationX = 0;
 
+    private void OnEnable()
+    {
+        OnTakeDamage += ApplyDamage;
+    }
+
+    private void OnDisable()
+    {
+        OnTakeDamage -= ApplyDamage;
+    }
+
     void Awake()
     {
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
         defaultYPos = playerCamera.transform.localPosition.y;
+        defaultFOV = playerCamera.fieldOfView;
+        currentHealth = maxHealth;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -108,6 +158,18 @@ public class FirstPersonController : MonoBehaviour
             if (canUseHeadbob)
                 HandleHeadbob();
 
+            if (canZoom)
+                HandleZoom();
+
+            if (useFootsteps)
+                HandleFootsteps();
+
+            if (canInteract)
+            {
+                HandleInteractionCheck();
+                HandleInteractionInput();
+            }
+
             ApplyFinalMovements();
         }
     }
@@ -125,7 +187,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleMouseLook()
     {
-        // Look up and down
+        //Look up and down
         rotationX -= input.GetMouseMovement().y * lookSpeedY * Time.deltaTime;
         rotationX = Mathf.Clamp(rotationX, -upperLookLimit, lowerLookLimit);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
@@ -162,6 +224,119 @@ public class FirstPersonController : MonoBehaviour
                 defaultYPos + Mathf.Sin(timer) * (isCrouching ? crouchBobAmount : IsSprinting ? sprintBobAmount : walkBobAmount),
                 playerCamera.transform.localPosition.z);
         }
+    }
+
+    private void HandleZoom()
+    {
+        if (input.GetADSEnable())
+        {
+            if (zoomRoutine != null)
+            {
+                StopCoroutine(zoomRoutine);
+                zoomRoutine = null;
+            }
+            zoomRoutine = StartCoroutine(ToggleZoom(true));
+        }
+        if (input.GetADSDisable())
+        {
+            if (zoomRoutine != null)
+            {
+                StopCoroutine(zoomRoutine);
+                zoomRoutine = null;
+            }
+            zoomRoutine = StartCoroutine(ToggleZoom(false));
+        }
+    }
+
+    private void HandleInteractionCheck()
+    {
+        // Check if raycast is hitting interactable
+        if (Physics.Raycast(playerCamera.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance))
+        {
+            // If on interactable layer and (no interactable object selected or object your looking at isnt the current object stored
+            if (hit.collider.gameObject.layer == 9 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
+            {
+                // Get new current interactable
+                hit.collider.TryGetComponent(out currentInteractable);
+
+                if (currentInteractable)
+                    currentInteractable.OnFocus();
+            }
+        }
+        // If raycast doesnt find anything
+        else if (currentInteractable)
+        {
+            currentInteractable.OnLoseFocus();
+            currentInteractable = null;
+        }
+    }
+
+    private void HandleInteractionInput()
+    {
+        // Check if looking at interactable & input
+        if (input.GetInteract() && currentInteractable != null && 
+            Physics.Raycast(playerCamera.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance, interactionLayer))
+        {
+            currentInteractable.OnInteract();
+        }
+    }
+
+    private void HandleFootsteps()
+    {
+        if (!characterController.isGrounded)
+            return;
+
+        if (currentInput == Vector2.zero)
+            return;
+
+        footstepTimer -= Time.deltaTime;
+
+        if (footstepTimer <= 0)
+        {
+            if (Physics.Raycast(playerCamera.transform.position, Vector3.down, out RaycastHit hit, 3))
+            {
+                switch (hit.collider.tag)
+                {
+                    case "Footsteps/WOOD":
+                        footstepAudioSource.PlayOneShot(woodClips[UnityEngine.Random.Range(0, woodClips.Length - 1)]);
+                        break;
+                    case "Footsteps/METAL":
+                        footstepAudioSource.PlayOneShot(metalClips[UnityEngine.Random.Range(0, metalClips.Length - 1)]);
+                        break;
+                    case "Footsteps/GRASS":
+                        footstepAudioSource.PlayOneShot(grassClips[UnityEngine.Random.Range(0, grassClips.Length - 1)]);
+                        break;
+                    default:
+                        footstepAudioSource.PlayOneShot(grassClips[UnityEngine.Random.Range(0, grassClips.Length - 1)]);
+                        break;
+                }
+            }
+
+            footstepTimer = GetCurrentOffset;
+        }
+    }
+
+    private void ApplyDamage(float damage)
+    {
+        currentHealth -= damage;
+        OnDamage?.Invoke(currentHealth);
+
+        if (currentHealth <= 0) // Check if players health is 0
+            KillPlayer();
+        else if (regeneratingHealth != null) // Stop healing
+            StopCoroutine(regeneratingHealth);
+
+        regeneratingHealth = StartCoroutine(RegenerateHealth()); // Restart regen
+    }
+    
+    private void KillPlayer()
+    {
+        currentHealth = 0;
+
+        if (regeneratingHealth != null)
+            StopCoroutine(regeneratingHealth);
+
+        print("DEAD");
     }
 
     private void ApplyFinalMovements()
@@ -213,7 +388,43 @@ public class FirstPersonController : MonoBehaviour
         // Change crouching bool
         isCrouching = !isCrouching;
 
-        // End crouchign anim(time)
+        // End crouching anim(time)
         duringCrouchAnim = false;
+    }
+
+    private IEnumerator ToggleZoom(bool isEnter)
+    {
+        float targetFOV = isEnter ? zoomFOV : defaultFOV;
+        float startingFOV = playerCamera.fieldOfView;
+        float timeElapsed = 0;
+
+        while(timeElapsed < timeToZoom)
+        {
+            playerCamera.fieldOfView = Mathf.Lerp(startingFOV, targetFOV, timeElapsed / timeToZoom);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        playerCamera.fieldOfView = targetFOV;
+        zoomRoutine = null;
+    }
+
+    private IEnumerator RegenerateHealth()
+    {
+        yield return new WaitForSeconds(timeBeforeRegenStarts);
+        WaitForSeconds timetoWait = new WaitForSeconds(healthTimeIncrement);
+
+        while (currentHealth < maxHealth)
+        {
+            currentHealth += healthValueIncrement;
+
+            if (currentHealth > maxHealth)
+                currentHealth = maxHealth;
+
+            OnHeal?.Invoke(currentHealth);
+            yield return timetoWait;
+        }
+
+        regeneratingHealth = null;
     }
 }

@@ -303,11 +303,242 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""095aec14-1e85-412d-a3bf-3a62025b7a33"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Weapons"",
+            ""id"": ""62322f4a-738b-4816-99df-53d2f77f47e8"",
+            ""actions"": [
+                {
+                    ""name"": ""ADS"",
+                    ""type"": ""Button"",
+                    ""id"": ""88592a93-052e-447b-9e88-9e459b4e8ca5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShootEnable"",
+                    ""type"": ""Button"",
+                    ""id"": ""99dc77a1-2ddf-44b6-9cbe-7debc7e3b12b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShootDisable"",
+                    ""type"": ""Button"",
+                    ""id"": ""dc90dac4-3324-4f32-9cff-c858cf0b9d14"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""e1961232-7569-4bbe-afe4-5a10b4fbe4a6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchWeaponGamepad"",
+                    ""type"": ""Button"",
+                    ""id"": ""3020e1d0-5590-4af0-b046-9b031a8e4e77"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchWeaponOne"",
+                    ""type"": ""Button"",
+                    ""id"": ""13ecb006-fc46-41aa-b318-d098b439c8e6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchWeaponTwo"",
+                    ""type"": ""Button"",
+                    ""id"": ""d0fa7f79-dcdd-4c55-bb6b-776bcab3be79"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""6c4cb543-3c4e-4694-8807-41d03267e8fe"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ADS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce8d3b2f-74cc-4712-9668-bfadbe07c3b6"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ADS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""164e821a-c723-441b-ac52-dc3a36c2d901"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootEnable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34024840-99d8-4ab1-92f4-1580f696799c"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootEnable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2f33665-a2e1-4d00-899e-f8fe6d20f190"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootDisable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab661da3-4f82-4114-ac68-4dc4cb92b214"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootDisable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4fd15043-4dca-4835-ab2e-34bb336fe69e"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52cab782-ee55-431b-91a8-1f6341e024a4"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58389ef0-f8bb-495c-b23d-b56ba80f8c04"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeaponGamepad"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fba04dc6-258e-4efa-9618-ccac2b9be624"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeaponOne"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e1a10fe-8479-4d8f-905c-33e1311991ee"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeaponTwo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""OtherControls"",
+            ""id"": ""d1bbf659-ae45-4296-8ae2-080beddf708f"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d9cfb4c-b5fb-4286-af69-e71c5817b055"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""512bc7fc-764f-4953-8383-7e106fc523fa"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4f5e6ce-e410-410a-b5b7-2a94b1fb8b10"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -326,6 +557,18 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_MovementEffects_SprintEnabled = m_MovementEffects.FindAction("SprintEnabled", throwIfNotFound: true);
         m_MovementEffects_SprintDisabled = m_MovementEffects.FindAction("SprintDisabled", throwIfNotFound: true);
         m_MovementEffects_Crouch = m_MovementEffects.FindAction("Crouch", throwIfNotFound: true);
+        // Weapons
+        m_Weapons = asset.FindActionMap("Weapons", throwIfNotFound: true);
+        m_Weapons_ADS = m_Weapons.FindAction("ADS", throwIfNotFound: true);
+        m_Weapons_ShootEnable = m_Weapons.FindAction("ShootEnable", throwIfNotFound: true);
+        m_Weapons_ShootDisable = m_Weapons.FindAction("ShootDisable", throwIfNotFound: true);
+        m_Weapons_Reload = m_Weapons.FindAction("Reload", throwIfNotFound: true);
+        m_Weapons_SwitchWeaponGamepad = m_Weapons.FindAction("SwitchWeaponGamepad", throwIfNotFound: true);
+        m_Weapons_SwitchWeaponOne = m_Weapons.FindAction("SwitchWeaponOne", throwIfNotFound: true);
+        m_Weapons_SwitchWeaponTwo = m_Weapons.FindAction("SwitchWeaponTwo", throwIfNotFound: true);
+        // OtherControls
+        m_OtherControls = asset.FindActionMap("OtherControls", throwIfNotFound: true);
+        m_OtherControls_Interact = m_OtherControls.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -479,6 +722,120 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         }
     }
     public MovementEffectsActions @MovementEffects => new MovementEffectsActions(this);
+
+    // Weapons
+    private readonly InputActionMap m_Weapons;
+    private IWeaponsActions m_WeaponsActionsCallbackInterface;
+    private readonly InputAction m_Weapons_ADS;
+    private readonly InputAction m_Weapons_ShootEnable;
+    private readonly InputAction m_Weapons_ShootDisable;
+    private readonly InputAction m_Weapons_Reload;
+    private readonly InputAction m_Weapons_SwitchWeaponGamepad;
+    private readonly InputAction m_Weapons_SwitchWeaponOne;
+    private readonly InputAction m_Weapons_SwitchWeaponTwo;
+    public struct WeaponsActions
+    {
+        private @PlayerInput m_Wrapper;
+        public WeaponsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ADS => m_Wrapper.m_Weapons_ADS;
+        public InputAction @ShootEnable => m_Wrapper.m_Weapons_ShootEnable;
+        public InputAction @ShootDisable => m_Wrapper.m_Weapons_ShootDisable;
+        public InputAction @Reload => m_Wrapper.m_Weapons_Reload;
+        public InputAction @SwitchWeaponGamepad => m_Wrapper.m_Weapons_SwitchWeaponGamepad;
+        public InputAction @SwitchWeaponOne => m_Wrapper.m_Weapons_SwitchWeaponOne;
+        public InputAction @SwitchWeaponTwo => m_Wrapper.m_Weapons_SwitchWeaponTwo;
+        public InputActionMap Get() { return m_Wrapper.m_Weapons; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(WeaponsActions set) { return set.Get(); }
+        public void SetCallbacks(IWeaponsActions instance)
+        {
+            if (m_Wrapper.m_WeaponsActionsCallbackInterface != null)
+            {
+                @ADS.started -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnADS;
+                @ADS.performed -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnADS;
+                @ADS.canceled -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnADS;
+                @ShootEnable.started -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnShootEnable;
+                @ShootEnable.performed -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnShootEnable;
+                @ShootEnable.canceled -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnShootEnable;
+                @ShootDisable.started -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnShootDisable;
+                @ShootDisable.performed -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnShootDisable;
+                @ShootDisable.canceled -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnShootDisable;
+                @Reload.started -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnReload;
+                @SwitchWeaponGamepad.started -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchWeaponGamepad;
+                @SwitchWeaponGamepad.performed -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchWeaponGamepad;
+                @SwitchWeaponGamepad.canceled -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchWeaponGamepad;
+                @SwitchWeaponOne.started -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchWeaponOne;
+                @SwitchWeaponOne.performed -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchWeaponOne;
+                @SwitchWeaponOne.canceled -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchWeaponOne;
+                @SwitchWeaponTwo.started -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchWeaponTwo;
+                @SwitchWeaponTwo.performed -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchWeaponTwo;
+                @SwitchWeaponTwo.canceled -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchWeaponTwo;
+            }
+            m_Wrapper.m_WeaponsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ADS.started += instance.OnADS;
+                @ADS.performed += instance.OnADS;
+                @ADS.canceled += instance.OnADS;
+                @ShootEnable.started += instance.OnShootEnable;
+                @ShootEnable.performed += instance.OnShootEnable;
+                @ShootEnable.canceled += instance.OnShootEnable;
+                @ShootDisable.started += instance.OnShootDisable;
+                @ShootDisable.performed += instance.OnShootDisable;
+                @ShootDisable.canceled += instance.OnShootDisable;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
+                @SwitchWeaponGamepad.started += instance.OnSwitchWeaponGamepad;
+                @SwitchWeaponGamepad.performed += instance.OnSwitchWeaponGamepad;
+                @SwitchWeaponGamepad.canceled += instance.OnSwitchWeaponGamepad;
+                @SwitchWeaponOne.started += instance.OnSwitchWeaponOne;
+                @SwitchWeaponOne.performed += instance.OnSwitchWeaponOne;
+                @SwitchWeaponOne.canceled += instance.OnSwitchWeaponOne;
+                @SwitchWeaponTwo.started += instance.OnSwitchWeaponTwo;
+                @SwitchWeaponTwo.performed += instance.OnSwitchWeaponTwo;
+                @SwitchWeaponTwo.canceled += instance.OnSwitchWeaponTwo;
+            }
+        }
+    }
+    public WeaponsActions @Weapons => new WeaponsActions(this);
+
+    // OtherControls
+    private readonly InputActionMap m_OtherControls;
+    private IOtherControlsActions m_OtherControlsActionsCallbackInterface;
+    private readonly InputAction m_OtherControls_Interact;
+    public struct OtherControlsActions
+    {
+        private @PlayerInput m_Wrapper;
+        public OtherControlsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact => m_Wrapper.m_OtherControls_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_OtherControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(OtherControlsActions set) { return set.Get(); }
+        public void SetCallbacks(IOtherControlsActions instance)
+        {
+            if (m_Wrapper.m_OtherControlsActionsCallbackInterface != null)
+            {
+                @Interact.started -= m_Wrapper.m_OtherControlsActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_OtherControlsActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_OtherControlsActionsCallbackInterface.OnInteract;
+            }
+            m_Wrapper.m_OtherControlsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+            }
+        }
+    }
+    public OtherControlsActions @OtherControls => new OtherControlsActions(this);
     public interface IMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -490,5 +847,19 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnSprintEnabled(InputAction.CallbackContext context);
         void OnSprintDisabled(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+    }
+    public interface IWeaponsActions
+    {
+        void OnADS(InputAction.CallbackContext context);
+        void OnShootEnable(InputAction.CallbackContext context);
+        void OnShootDisable(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
+        void OnSwitchWeaponGamepad(InputAction.CallbackContext context);
+        void OnSwitchWeaponOne(InputAction.CallbackContext context);
+        void OnSwitchWeaponTwo(InputAction.CallbackContext context);
+    }
+    public interface IOtherControlsActions
+    {
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

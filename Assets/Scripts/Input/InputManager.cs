@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
     private static InputManager _instance;
-    PlayerInput _movement;
+    PlayerInput _playerControls;
 
     public static InputManager Instance
     {
@@ -26,41 +24,41 @@ public class InputManager : MonoBehaviour
             _instance = this;
         }
 
-        _movement = new PlayerInput();
+        _playerControls = new PlayerInput();
     }
 
     private void OnEnable()
     {
-        _movement.Enable();
+        _playerControls.Enable();
     }
 
     private void OnDisable()
     {
-        _movement.Disable();
+        _playerControls.Disable();
     }
 
     public Vector2 GetPlayerMovement()
     {
-        return _movement.Movement.Movement.ReadValue<Vector2>();
+        return _playerControls.Movement.Movement.ReadValue<Vector2>();
     }
 
     public Vector2 GetMouseMovement()
     {
-        return _movement.Movement.Look.ReadValue<Vector2>();
+        return _playerControls.Movement.Look.ReadValue<Vector2>();
     }
 
     public bool GetJumped()
     {
-        return _movement.Movement.Jump.triggered;
+        return _playerControls.Movement.Jump.triggered;
     }
 
     public bool GetSprint()
     {
-        if (_movement.MovementEffects.SprintEnabled.IsPressed())
+        if (_playerControls.MovementEffects.SprintEnabled.IsPressed())
         {
             return true;
         }
-        if (_movement.MovementEffects.SprintDisabled.WasReleasedThisFrame())
+        if (_playerControls.MovementEffects.SprintDisabled.WasReleasedThisFrame())
         {
             return false;
         }
@@ -69,6 +67,59 @@ public class InputManager : MonoBehaviour
 
     public bool GetCrouch()
     {
-        return _movement.MovementEffects.Crouch.triggered;
+        return _playerControls.MovementEffects.Crouch.triggered;
+    }
+
+    public bool GetADSEnable()
+    {
+        return _playerControls.Weapons.ADS.WasPressedThisFrame();
+    }
+
+    public bool GetADSDisable()
+    {
+        return _playerControls.Weapons.ADS.WasReleasedThisFrame();
+    }
+
+    public bool GetShooting()
+    {
+        if (_playerControls.Weapons.ShootEnable.IsPressed())
+        {
+            return true;
+        }
+        if (_playerControls.Weapons.ShootDisable.WasReleasedThisFrame())
+        {
+            return false;
+        }
+        return false;
+    }
+
+    public bool GetSingleShooting()
+    {
+        return _playerControls.Weapons.ShootEnable.triggered;
+    }
+
+    public bool GetSwitchGamepad()
+    {
+        return _playerControls.Weapons.SwitchWeaponGamepad.triggered;
+    }
+
+    public bool GetSwitchWeaponOne()
+    {
+        return _playerControls.Weapons.SwitchWeaponOne.triggered;
+    }
+
+    public bool GetSwitchWeaponTwo()
+    {
+        return _playerControls.Weapons.SwitchWeaponTwo.triggered;
+    }
+
+    public bool GetReload()
+    {
+        return _playerControls.Weapons.Reload.triggered;
+    }
+
+    public bool GetInteract()
+    {
+        return _playerControls.OtherControls.Interact.triggered;
     }
 }
