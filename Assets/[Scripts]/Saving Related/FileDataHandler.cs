@@ -12,6 +12,7 @@ public class FileDataHandler
 
     private bool useEncryption = false;
     private readonly string encryptionCodeWord = "SuperSecretCodeWord";
+    private readonly string backupExtension = ".bak";
     public FileDataHandler(string dataDirPath, string dataFileName, bool useEncryption)
     {
         this.gameDataDirPath = dataDirPath;
@@ -19,7 +20,7 @@ public class FileDataHandler
         this.useEncryption = useEncryption;
     }
 
-    public GameData Load(string profileId)
+    public GameData Load(string profileId, bool allowRestoreFromBackup = true)
     {
         if (profileId == null)
         {
@@ -51,7 +52,20 @@ public class FileDataHandler
             }
             catch (Exception e)
             {
-                Debug.LogError("Error occured when trying to load data from file: " + fullPath + "\n" + e);
+                if (allowRestoreFromBackup)
+                {
+                    Debug.LogWarning("Failed to load data file. Attempting to roll back.\n" + e);
+                    bool rollbackSuccess = AttemptRollback(fullPath);
+                    if (rollbackSuccess)
+                    {
+                        loadedData = Load(profileId, false);
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Error occured when trying to load file at path: "
+                        + fullPath + " and backup did not work.\n" + e);
+                }
             }
         }
         return loadedData;
@@ -65,6 +79,7 @@ public class FileDataHandler
         }
         //use Path.Combine to account for different OS's
         string fullPath = Path.Combine(gameDataDirPath, profileId, dataFileName);
+        string backupFilePath = fullPath + backupExtension;
         try
         {
             //create the directory where the file will be stored if it doesnt exist already
@@ -86,6 +101,17 @@ public class FileDataHandler
                 {
                     writer.Write(dataToStore);
                 }
+            }
+
+            GameData verifiedGameData = Load(profileId);
+
+            if (verifiedGameData != null)
+            {
+                File.Copy(fullPath, backupFilePath, true);
+            }
+            else
+            {
+                throw new Exception("Save file could not be verified and backup could not be created.");
             }
         }
         catch (Exception e)
@@ -168,5 +194,30 @@ public class FileDataHandler
             modifiedData += (char)(data[i] ^ encryptionCodeWord[i % encryptionCodeWord.Length]);
         }
         return modifiedData;
+    }
+
+    private bool AttemptRollback(string fullPath)
+    {
+        bool success = false;
+        string backupFilePath = fullPath + backupExtension;
+        try
+        {
+            if (File.Exists(backupFilePath))
+            {
+                File.Copy(backupFilePath, fullPath, true);
+                success = true;
+                Debug.LogWarning("Had to roll back backup file at: " + backupFilePath);
+            }
+            else
+            {
+                throw new Exception("Tried to roll back, but no backup file exists to roll back to.");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error occured when trying to roll back to backup file at: "
+                + backupFilePath + "\n" + e);
+        }
+        return success;
     }
 }

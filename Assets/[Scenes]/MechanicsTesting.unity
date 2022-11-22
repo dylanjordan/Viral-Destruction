@@ -7174,7 +7174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8710140220170313841, guid: f18ff06157b71cc428b73d3516f37d40, type: 3}
       propertyPath: initializeDataIfNull
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710140220170313841, guid: f18ff06157b71cc428b73d3516f37d40, type: 3}
+      propertyPath: overideSelectedProfileId
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8710140220170313842, guid: f18ff06157b71cc428b73d3516f37d40, type: 3}
       propertyPath: m_Name
