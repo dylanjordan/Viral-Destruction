@@ -21,7 +21,7 @@ public class AmmoBox : Interactable, IDataPersistence
             this.gameObject.SetActive(false);
         }
     }
-    public void SaveData(ref GameData data)
+    public void SaveData(GameData data)
     {
         if (data.AmmoBoxesCollected.ContainsKey(id))
         {

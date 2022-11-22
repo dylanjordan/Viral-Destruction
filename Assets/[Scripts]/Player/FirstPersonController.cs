@@ -82,7 +82,7 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
         this.currentHealth = data.playerCurrentHealth;
     }
 
-    public void SaveData(ref GameData data)
+    public void SaveData(GameData data)
     {
         data.playerPosition = this.transform.position;
         data.playerCurrentHealth = this.currentHealth;

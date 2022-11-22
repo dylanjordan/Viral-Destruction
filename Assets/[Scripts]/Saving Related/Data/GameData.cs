@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
+    public long lastUpdated;
+
     public float playerCurrentHealth;
 
     public SerializableDictionary<string, bool> EnemiesKilled;
@@ -19,4 +21,6 @@ public class GameData
         EnemiesKilled = new SerializableDictionary<string, bool>();
         AmmoBoxesCollected = new SerializableDictionary<string, bool>();
     }
+
+    //you can incorporate TMPro elements by refering them to here and it will update in the SaveSlot.cs class
 }

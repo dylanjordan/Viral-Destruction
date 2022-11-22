@@ -930,6 +930,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1830580e227ae4cad0d3b064abb764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstSelected: {fileID: 116908450}
+  SaveSlotsMenu: {fileID: 0}
 --- !u!4 &1912735188
 Transform:
   m_ObjectHideFlags: 0
