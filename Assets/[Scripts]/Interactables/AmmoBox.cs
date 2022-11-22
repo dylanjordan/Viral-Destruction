@@ -5,6 +5,8 @@ using UnityEngine;
 public class AmmoBox : Interactable, IDataPersistence
 {
     [SerializeField] private string id;
+    [SerializeField] private int minAmmo = 20;
+    [SerializeField] private int maxAmmo = 30;
 
     private bool collected = false;
     [ContextMenu("Generate guid for id")]
@@ -38,7 +40,7 @@ public class AmmoBox : Interactable, IDataPersistence
 
     public override void OnInteract()
     {
-        fpsController.GetComponentInChildren<Gun>().AddAmmo(30);
+        fpsController.GetComponentInChildren<Gun>().AddAmmo(Random.Range(minAmmo, maxAmmo));
         collected = true;
         this.gameObject.SetActive(false);
     }
