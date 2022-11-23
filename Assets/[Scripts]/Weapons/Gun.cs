@@ -23,10 +23,18 @@ public class Gun : MonoBehaviour
     public Animator animator;
     public TextMeshProUGUI text;
 
+    [Header("Audio Parameters")]
     [SerializeField] private AudioSource gunfireAudioSource = default;
     [SerializeField] private AudioClip gunShoot = default;
 
+    [Header("Recoil Values")]
+    public float _recoilSpeed = 8f;
+    public float _recoilPower = 5;
+
+    // Internal Privates
     private float nextTimeToFire = 0f;
+    private Quaternion originalRotation;
+    private Vector3 recoilRotation = new Vector3(-1, 0, 0);
 
     private InputManager input;
 
@@ -34,6 +42,8 @@ public class Gun : MonoBehaviour
     {
         input = InputManager.Instance;
         currentAmmo = maxAmmo;
+
+        originalRotation = transform.localRotation;
     }
 
     void OnEnable()
@@ -65,8 +75,9 @@ public class Gun : MonoBehaviour
     void Shoot()
     {
         muzzleFlash.Play();
-
         gunfireAudioSource.PlayOneShot(gunShoot);
+
+        StartCoroutine(Recoil());
 
         currentAmmo--;
 
@@ -119,5 +130,14 @@ public class Gun : MonoBehaviour
 
         //currentAmmo = maxAmmo;
         isReloading = false;
+    }
+
+    IEnumerator Recoil()
+    {
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(new Vector3(recoilRotation.x * _recoilPower, recoilRotation.y, recoilRotation.z)), Time.deltaTime * _recoilSpeed);
+
+        yield return new WaitForSeconds(0.5f);
+
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, originalRotation, Time.deltaTime * _recoilSpeed);
     }
 }

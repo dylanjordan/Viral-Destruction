@@ -13,8 +13,6 @@ public class WeaponADS : MonoBehaviour
     private Vector3 originalPosition;
     private Quaternion originalRotation;
 
-    public Camera weaponCam;
-
     private InputManager input;
 
     private void Start()

@@ -33,6 +33,7 @@ public class AmmoBox : Interactable, IDataPersistence
     }
 
     public GameObject fpsController;
+
     public override void OnFocus()
     {
         print("LOOKING AT " + gameObject.name);
