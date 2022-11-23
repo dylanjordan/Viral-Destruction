@@ -9,7 +9,6 @@ public class WeaponADS : MonoBehaviour
     public Vector3 aimPosition;
     public Vector3 aimRotation;
 
-    private static WeaponADS _instance;
     //internal privates
     private Vector3 originalPosition;
     private Quaternion originalRotation;
@@ -17,26 +16,6 @@ public class WeaponADS : MonoBehaviour
     public Camera weaponCam;
 
     private InputManager input;
-
-    public static WeaponADS Instance
-    {
-        get
-        {
-            return _instance;
-        }
-    }
-
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
-    }
 
     private void Start()
     {

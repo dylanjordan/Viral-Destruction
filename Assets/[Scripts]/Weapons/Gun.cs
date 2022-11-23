@@ -23,6 +23,9 @@ public class Gun : MonoBehaviour
     public Animator animator;
     public TextMeshProUGUI text;
 
+    [SerializeField] private AudioSource gunfireAudioSource = default;
+    [SerializeField] private AudioClip gunShoot = default;
+
     private float nextTimeToFire = 0f;
 
     private InputManager input;
@@ -62,6 +65,8 @@ public class Gun : MonoBehaviour
     void Shoot()
     {
         muzzleFlash.Play();
+
+        gunfireAudioSource.PlayOneShot(gunShoot);
 
         currentAmmo--;
 
