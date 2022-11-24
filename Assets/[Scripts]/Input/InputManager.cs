@@ -122,4 +122,9 @@ public class InputManager : MonoBehaviour
     {
         return _playerControls.OtherControls.Interact.triggered;
     }
+
+    public bool GetEscape()
+    {
+        return _playerControls.OtherControls.Escape.triggered;
+    }
 }

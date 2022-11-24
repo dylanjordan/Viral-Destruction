@@ -17,6 +17,20 @@ public class Gun : MonoBehaviour
     public float reloadTime = 1f;
     private bool isReloading = false;
 
+    [Header("Hipfire Recoil Parameters")]
+    [SerializeField] public float recoilX;
+    [SerializeField] public float recoilY;
+    [SerializeField] public float recoilZ;
+
+    [Header("ADS Recoil Parameters")]
+    [SerializeField] public float aimRecoilX;
+    [SerializeField] public float aimRecoilY;
+    [SerializeField] public float aimRecoilZ;
+
+    [Header("Settings")]
+    [SerializeField] public float snappiness;
+    [SerializeField] public float returnSpeed;
+
     [Header("Additional Variables")]
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
@@ -27,23 +41,17 @@ public class Gun : MonoBehaviour
     [SerializeField] private AudioSource gunfireAudioSource = default;
     [SerializeField] private AudioClip gunShoot = default;
 
-    [Header("Recoil Values")]
-    public float _recoilSpeed = 8f;
-    public float _recoilPower = 5;
-
     // Internal Privates
     private float nextTimeToFire = 0f;
-    private Quaternion originalRotation;
-    private Vector3 recoilRotation = new Vector3(-1, 0, 0);
 
     private InputManager input;
+    private Recoil recoil_script;
 
     void Start()
     {
         input = InputManager.Instance;
+        recoil_script = transform.Find("/FirstPersonController/CameraRotation/CameraRecoil").GetComponent<Recoil>();
         currentAmmo = maxAmmo;
-
-        originalRotation = transform.localRotation;
     }
 
     void OnEnable()
@@ -77,7 +85,7 @@ public class Gun : MonoBehaviour
         muzzleFlash.Play();
         gunfireAudioSource.PlayOneShot(gunShoot);
 
-        StartCoroutine(Recoil());
+        recoil_script.RecoilFire();
 
         currentAmmo--;
 
@@ -122,7 +130,7 @@ public class Gun : MonoBehaviour
 
         yield return new WaitForSeconds(0.25f);
 
-        int reloadAmount = maxAmmo - currentAmmo; // How mnay bullets to refill clip
+        int reloadAmount = maxAmmo - currentAmmo; // How many bullets to refill clip
 
         reloadAmount = (stockAmmo - reloadAmount) >= 0 ? reloadAmount : stockAmmo; // Check if enough bullets in stock
         currentAmmo += reloadAmount;
@@ -130,14 +138,5 @@ public class Gun : MonoBehaviour
 
         //currentAmmo = maxAmmo;
         isReloading = false;
-    }
-
-    IEnumerator Recoil()
-    {
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(new Vector3(recoilRotation.x * _recoilPower, recoilRotation.y, recoilRotation.z)), Time.deltaTime * _recoilSpeed);
-
-        yield return new WaitForSeconds(0.5f);
-
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, originalRotation, Time.deltaTime * _recoilSpeed);
     }
 }

@@ -517,6 +517,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""ec3ade2a-0068-473e-b698-6cdbd1e66500"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -539,6 +548,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""264100c5-4c76-4d07-a2b3-92bc78c98419"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""484c87f1-bda4-44b5-be62-9bbd2fc8f3fc"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -569,6 +600,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // OtherControls
         m_OtherControls = asset.FindActionMap("OtherControls", throwIfNotFound: true);
         m_OtherControls_Interact = m_OtherControls.FindAction("Interact", throwIfNotFound: true);
+        m_OtherControls_Escape = m_OtherControls.FindAction("Escape", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -808,11 +840,13 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_OtherControls;
     private IOtherControlsActions m_OtherControlsActionsCallbackInterface;
     private readonly InputAction m_OtherControls_Interact;
+    private readonly InputAction m_OtherControls_Escape;
     public struct OtherControlsActions
     {
         private @PlayerInput m_Wrapper;
         public OtherControlsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Interact => m_Wrapper.m_OtherControls_Interact;
+        public InputAction @Escape => m_Wrapper.m_OtherControls_Escape;
         public InputActionMap Get() { return m_Wrapper.m_OtherControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -825,6 +859,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_OtherControlsActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_OtherControlsActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_OtherControlsActionsCallbackInterface.OnInteract;
+                @Escape.started -= m_Wrapper.m_OtherControlsActionsCallbackInterface.OnEscape;
+                @Escape.performed -= m_Wrapper.m_OtherControlsActionsCallbackInterface.OnEscape;
+                @Escape.canceled -= m_Wrapper.m_OtherControlsActionsCallbackInterface.OnEscape;
             }
             m_Wrapper.m_OtherControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -832,6 +869,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
             }
         }
     }
@@ -861,5 +901,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     public interface IOtherControlsActions
     {
         void OnInteract(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
     }
 }

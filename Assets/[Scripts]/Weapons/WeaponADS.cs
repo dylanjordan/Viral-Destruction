@@ -8,6 +8,7 @@ public class WeaponADS : MonoBehaviour
     public float _adsSpeed = 8f;
     public Vector3 aimPosition;
     public Vector3 aimRotation;
+    public bool isAiming;
 
     //internal privates
     private Vector3 originalPosition;

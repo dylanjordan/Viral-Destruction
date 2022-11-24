@@ -32,6 +32,7 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
     [SerializeField] private AudioClip[] woodClips = default;
     [SerializeField] private AudioClip[] metalClips = default;
     [SerializeField] private AudioClip[] grassClips = default;
+    [SerializeField] private AudioClip[] defaultClips = default;
     private float footstepTimer = 0;
     private float GetCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : IsSprinting ? baseStepSpeed * sprintStepMutliplier : baseStepSpeed;
 
@@ -289,7 +290,7 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
                         footstepAudioSource.PlayOneShot(grassClips[UnityEngine.Random.Range(0, grassClips.Length - 1)]);
                         break;
                     default:
-                        footstepAudioSource.PlayOneShot(grassClips[UnityEngine.Random.Range(0, grassClips.Length - 1)]);
+                        footstepAudioSource.PlayOneShot(defaultClips[UnityEngine.Random.Range(0, grassClips.Length - 1)]);
                         break;
                 }
             }
