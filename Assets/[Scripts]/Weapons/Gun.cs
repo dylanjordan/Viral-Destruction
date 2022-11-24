@@ -50,7 +50,7 @@ public class Gun : MonoBehaviour
     void Start()
     {
         input = InputManager.Instance;
-        recoil_script = transform.Find("/FirstPersonController/CameraRotation/CameraRecoil").GetComponent<Recoil>();
+        recoil_script = transform.Find("/-- Player --/FirstPersonController/CameraRotation/CameraRecoil").GetComponent<Recoil>();
         currentAmmo = maxAmmo;
     }
 
