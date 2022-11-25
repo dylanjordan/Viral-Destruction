@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/[Scenes]/SplashScreens/AlphaSplashScreen.unity
+    guid: a789725ec39708840bc2cb70ae42b3ac
+  - enabled: 1
+    path: Assets/[Scenes]/SplashScreens/EpilepsySplashScreen.unity
+    guid: 99f4b916285a4134e81a0a413a73ffcd
+  - enabled: 1
+    path: Assets/[Scenes]/SplashScreens/LogoSplashScreen.unity
+    guid: cd7eec7e241a500498f6136be9416925
+  - enabled: 1
     path: Assets/[Scenes]/Main Menu.unity
     guid: 011f5c61ee7f0b746a8f174ae761fe09
   - enabled: 1

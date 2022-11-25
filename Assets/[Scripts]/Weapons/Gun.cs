@@ -40,6 +40,7 @@ public class Gun : MonoBehaviour
     [Header("Audio Parameters")]
     [SerializeField] private AudioSource gunfireAudioSource = default;
     [SerializeField] private AudioClip gunShoot = default;
+    [SerializeField] private AudioClip gunReload = default;
 
     // Internal Privates
     private float nextTimeToFire = 0f;
@@ -65,7 +66,7 @@ public class Gun : MonoBehaviour
         if (isReloading)
             return;
 
-        if (stockAmmo > 0 && (currentAmmo <= 0 || input.GetReload()))
+        if (stockAmmo > 0 && currentAmmo < maxAmmo && (currentAmmo <= 0 || input.GetReload()))
         {
             StartCoroutine(Reload());
             return;
@@ -120,9 +121,9 @@ public class Gun : MonoBehaviour
     IEnumerator Reload()
     {
         isReloading = true;
-        Debug.Log("Reloading");
 
         animator.SetBool("Reloading", true);
+        gunfireAudioSource.PlayOneShot(gunReload);
 
         yield return new WaitForSeconds(reloadTime - 0.25f);
 
