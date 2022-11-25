@@ -9,7 +9,7 @@ public class SeekPlayer : MonoBehaviour
     Transform player;
 
     Transform currentTarget = null;
-
+    EnemyFOV fov;
     
     float distToPlayer;
     public float speed;
@@ -17,9 +17,13 @@ public class SeekPlayer : MonoBehaviour
     public float escapeDist;
     NavMeshAgent enemy;
     Rigidbody enemyBody;
-    
+    EnemyAI enemyAI;
+
+
     void Start()
     {
+        enemyAI = GetComponent<EnemyAI>();
+        fov = GetComponent<EnemyFOV>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         enemyBody = GetComponent<Rigidbody>();
         enemy = GetComponent<NavMeshAgent>();
@@ -32,9 +36,13 @@ public class SeekPlayer : MonoBehaviour
     void Update()
     {
         
-        if (currentTarget != null)
+        if (currentTarget != null || fov.canSeePlayer == true)
         {
             enemy.destination = player.position;
+        }
+        else
+        {
+            enemyAI.Patrol();
         }
         
        

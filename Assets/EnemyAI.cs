@@ -21,12 +21,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, target) <2)
-        {
-
-            UpdateWaypoint();
-            UpdatePos();
-        }
+        Patrol();
     }
 
 
@@ -42,6 +37,16 @@ public class EnemyAI : MonoBehaviour
         if (index == waypoints.Length)
         {
             index = 0;
+        }
+    }
+
+    public void Patrol()
+    {
+        if (Vector3.Distance(transform.position, target) < 2)
+        {
+
+            UpdateWaypoint();
+            UpdatePos();
         }
     }
 }
