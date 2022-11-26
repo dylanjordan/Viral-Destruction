@@ -4,25 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-<<<<<<< Updated upstream
-    path: Assets/[Scenes]/SplashScreens/AlphaSplashScreen.unity
-    guid: a789725ec39708840bc2cb70ae42b3ac
-  - enabled: 1
-    path: Assets/[Scenes]/SplashScreens/EpilepsySplashScreen.unity
-    guid: 99f4b916285a4134e81a0a413a73ffcd
-  - enabled: 1
-    path: Assets/[Scenes]/SplashScreens/LogoSplashScreen.unity
-    guid: cd7eec7e241a500498f6136be9416925
-  - enabled: 1
-    path: Assets/[Scenes]/Main Menu.unity
-    guid: 011f5c61ee7f0b746a8f174ae761fe09
-=======
-    path: Assets/[Scenes]/Viral Destruction Menu.unity
-    guid: e3f7a481505eb2b4f8f515d1a3ef31d5
->>>>>>> Stashed changes
-  - enabled: 1
-    path: Assets/[Scenes]/MechanicsTesting.unity
-    guid: e696cffcf2dc2e3478537c997b33671e
+  m_Scenes: []
   m_configObjects: {}
