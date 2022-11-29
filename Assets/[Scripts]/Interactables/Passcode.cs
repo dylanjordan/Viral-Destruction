@@ -5,9 +5,10 @@ public class Passcode : MonoBehaviour
 {
     string code = "130013";
     string num = null;
-    //int numIndex = 0;
-    //string alpha;
-    public Text uiText = null;
+
+    [SerializeField] private Text uiText = null;
+    [SerializeField] private GameObject fadeOutScreen;
+    [SerializeField] private GameObject thankYouText;
 
     private InputManager input;
 
@@ -44,6 +45,8 @@ public class Passcode : MonoBehaviour
 
             // Do important stuff like start an anim
             // Correct Code
+            fadeOutScreen.SetActive(true);
+            thankYouText.SetActive(true);
         }
     }
 

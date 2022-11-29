@@ -5,9 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Footsteps/GRASS
-  - Footsteps/METAL
-  - Footsteps/WOOD
+  - Footsteps/LEAF
+  - Footsteps/GRAVEL
+  - Footsteps/WET
   layers:
   - Default
   - TransparentFX

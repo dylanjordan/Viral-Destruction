@@ -29,10 +29,9 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
     [SerializeField] private float crouchStepMultiplier = 1.5f;
     [SerializeField] private float sprintStepMutliplier = 0.6f;
     [SerializeField] private AudioSource footstepAudioSource = default;
-    [SerializeField] private AudioClip[] woodClips = default;
-    [SerializeField] private AudioClip[] metalClips = default;
-    [SerializeField] private AudioClip[] grassClips = default;
-    [SerializeField] private AudioClip[] defaultClips = default;
+    [SerializeField] private AudioClip[] leefyClips = default;
+    [SerializeField] private AudioClip[] gravelClips = default;
+    [SerializeField] private AudioClip[] wetClips = default;
     private float footstepTimer = 0;
     private float GetCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : IsSprinting ? baseStepSpeed * sprintStepMutliplier : baseStepSpeed;
 
@@ -43,7 +42,7 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
     [SerializeField, Range(1, 180)] private float lowerLookLimit = 80.0f;
 
     [Header("Health Parameters")]
-    [SerializeField] private float maxHealth = 100;
+    [SerializeField] public float maxHealth = 100;
     [SerializeField] private float timeBeforeRegenStarts = 3;
     [SerializeField] private float healthValueIncrement = 1;
     [SerializeField] private float healthTimeIncrement = 0.1f;
@@ -79,13 +78,13 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         this.transform.position = data.playerPosition;
-        this.currentHealth = data.playerCurrentHealth;
+        //this.currentHealth = data.playerCurrentHealth;
     }
 
     public void SaveData(GameData data)
     {
         data.playerPosition = this.transform.position;
-        data.playerCurrentHealth = this.currentHealth;
+        //data.playerCurrentHealth = this.currentHealth;
     }
     // SLIDING PARAMETERS
     private Vector3 hitPointNormal;
@@ -136,6 +135,7 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
         defaultYPos = playerCamera.transform.localPosition.y;
+        currentHealth = maxHealth;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -280,17 +280,17 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
             {
                 switch (hit.collider.tag)
                 {
-                    case "Footsteps/WOOD":
-                        footstepAudioSource.PlayOneShot(woodClips[UnityEngine.Random.Range(0, woodClips.Length - 1)]);
+                    case "Footsteps/LEAF":
+                        footstepAudioSource.PlayOneShot(leefyClips[UnityEngine.Random.Range(0, leefyClips.Length - 1)]);
                         break;
-                    case "Footsteps/METAL":
-                        footstepAudioSource.PlayOneShot(metalClips[UnityEngine.Random.Range(0, metalClips.Length - 1)]);
+                    case "Footsteps/GRAVEL":
+                        footstepAudioSource.PlayOneShot(gravelClips[UnityEngine.Random.Range(0, gravelClips.Length - 1)]);
                         break;
-                    case "Footsteps/GRASS":
-                        footstepAudioSource.PlayOneShot(grassClips[UnityEngine.Random.Range(0, grassClips.Length - 1)]);
+                    case "Footsteps/WET":
+                        footstepAudioSource.PlayOneShot(wetClips[UnityEngine.Random.Range(0, wetClips.Length - 1)]);
                         break;
                     default:
-                        footstepAudioSource.PlayOneShot(defaultClips[UnityEngine.Random.Range(0, grassClips.Length - 1)]);
+                        footstepAudioSource.PlayOneShot(gravelClips[UnityEngine.Random.Range(0, gravelClips.Length - 1)]);
                         break;
                 }
             }
@@ -304,12 +304,12 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
         currentHealth -= damage;
         OnDamage?.Invoke(currentHealth);
 
-        if (currentHealth <= 0) // Check if players health is 0
+        if (currentHealth <= 0)
             KillPlayer();
-        else if (regeneratingHealth != null) // Stop healing
+        else if (regeneratingHealth != null)
             StopCoroutine(regeneratingHealth);
 
-        regeneratingHealth = StartCoroutine(RegenerateHealth()); // Restart regen
+        StartCoroutine(RegenerateHealth());
     }
 
     private void KillPlayer()
@@ -378,9 +378,9 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
     private IEnumerator RegenerateHealth()
     {
         yield return new WaitForSeconds(timeBeforeRegenStarts);
-        WaitForSeconds timetoWait = new WaitForSeconds(healthTimeIncrement);
+        WaitForSeconds timeToWait = new WaitForSeconds(healthTimeIncrement);
 
-        while (currentHealth < maxHealth)
+        while(currentHealth < maxHealth)
         {
             currentHealth += healthValueIncrement;
 
@@ -388,7 +388,7 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
                 currentHealth = maxHealth;
 
             OnHeal?.Invoke(currentHealth);
-            yield return timetoWait;
+            yield return timeToWait;
         }
 
         regeneratingHealth = null;

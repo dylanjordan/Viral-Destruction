@@ -5,8 +5,6 @@ public class LockInteraction : Interactable
 {
     [SerializeField] private GameObject numPadUI;
 
-    public override void OnFocus() { }
-
     public override void OnInteract()
     {
         Time.timeScale = 0;
@@ -15,5 +13,6 @@ public class LockInteraction : Interactable
         numPadUI.SetActive(true);
     }
 
+    public override void OnFocus() { }
     public override void OnLoseFocus() { }
 }

@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponADS : MonoBehaviour
 {
-    [Header("ADS Values")]
+    [Header("ADS Parameters")]
     public float _adsSpeed = 8f;
     public Vector3 aimPosition;
     public Vector3 aimRotation;
+    [SerializeField] private GameObject crosshair;
     public bool isAiming;
 
     //internal privates
@@ -34,11 +33,13 @@ public class WeaponADS : MonoBehaviour
     {
         if (input.GetADSEnable())
         {
+            crosshair.SetActive(false);
             transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * _adsSpeed);
             transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(aimRotation), Time.deltaTime * _adsSpeed);
         }
         else
         {
+            crosshair.SetActive(true);
             transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * _adsSpeed);
             transform.localRotation = Quaternion.Lerp(transform.localRotation, originalRotation, Time.deltaTime * _adsSpeed);
         }

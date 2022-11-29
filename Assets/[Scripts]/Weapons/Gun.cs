@@ -36,6 +36,7 @@ public class Gun : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public Animator animator;
     public TextMeshProUGUI text;
+    public TextMeshProUGUI crosshairText;
 
     [Header("Audio Parameters")]
     [SerializeField] private AudioSource gunfireAudioSource = default;
@@ -116,6 +117,7 @@ public class Gun : MonoBehaviour
     private void UpdateAmmoText()
     {
         text.text = $"{currentAmmo} / {stockAmmo}";
+        crosshairText.text = $"{currentAmmo}";
     }
 
     IEnumerator Reload()
