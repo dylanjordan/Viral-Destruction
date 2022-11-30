@@ -389,7 +389,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300965793}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -594,6 +594,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 101686758880011490, guid: 98da7d521a088a1488243847720a6019, type: 3}
   m_PrefabInstance: {fileID: 922074812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1013215911 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5391551797912124635, guid: fbb7a34403c0ea74f833d2865ff42ecf, type: 3}
+  m_PrefabInstance: {fileID: 8113414409083746819}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1192521230
 GameObject:
@@ -5625,6 +5630,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5307731835146436635, guid: 0c003790ca796d345b6ce591e7b5d4d8, type: 3}
   m_PrefabInstance: {fileID: 1352656926}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1669357635 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5391551797616344859, guid: fbb7a34403c0ea74f833d2865ff42ecf, type: 3}
+  m_PrefabInstance: {fileID: 8113414409083746819}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1719475859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5391551798111969304, guid: fbb7a34403c0ea74f833d2865ff42ecf, type: 3}
+  m_PrefabInstance: {fileID: 8113414409083746819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1719475861 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5391551798111969302, guid: fbb7a34403c0ea74f833d2865ff42ecf, type: 3}
+  m_PrefabInstance: {fileID: 8113414409083746819}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719475859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1913074596
 GameObject:
   m_ObjectHideFlags: 0
@@ -21654,8 +21686,8 @@ MonoBehaviour:
   fpsCam: {fileID: 8510110700970999777}
   muzzleFlash: {fileID: 8510110702138676854}
   animator: {fileID: 8510110701493528270}
-  text: {fileID: 0}
-  crosshairText: {fileID: 0}
+  text: {fileID: 1669357635}
+  crosshairText: {fileID: 1719475861}
   gunfireAudioSource: {fileID: 8510110702168757992}
   gunShoot: {fileID: 8300000, guid: 41cce03622b6fcb47944754e363d04a1, type: 3}
   gunReload: {fileID: 8300000, guid: 62f67dfaef8a95c4c93ab54d78f14c8c, type: 3}
@@ -21674,8 +21706,8 @@ MonoBehaviour:
   _adsSpeed: 10
   aimPosition: {x: 0, y: 0.41, z: 0.24}
   aimRotation: {x: 0, y: 180, z: 0}
-  crosshair: {fileID: 0}
-  crosshairText: {fileID: 0}
+  crosshair: {fileID: 1013215911}
+  crosshairText: {fileID: 1719475859}
   isAiming: 0
 --- !u!114 &8510110702620163064
 MonoBehaviour:
@@ -21751,8 +21783,8 @@ MonoBehaviour:
   fpsCam: {fileID: 8510110700970999777}
   muzzleFlash: {fileID: 7158636321910479862}
   animator: {fileID: 8510110701493528270}
-  text: {fileID: 0}
-  crosshairText: {fileID: 0}
+  text: {fileID: 1669357635}
+  crosshairText: {fileID: 1719475861}
   gunfireAudioSource: {fileID: 8660942756939619958}
   gunShoot: {fileID: 8300000, guid: 41cce03622b6fcb47944754e363d04a1, type: 3}
   gunReload: {fileID: 8300000, guid: 62f67dfaef8a95c4c93ab54d78f14c8c, type: 3}
@@ -21771,8 +21803,8 @@ MonoBehaviour:
   _adsSpeed: 14
   aimPosition: {x: 0, y: 0.46, z: 0.17}
   aimRotation: {x: -1, y: 180, z: 0}
-  crosshair: {fileID: 0}
-  crosshairText: {fileID: 0}
+  crosshair: {fileID: 1013215911}
+  crosshairText: {fileID: 1719475859}
   isAiming: 0
 --- !u!82 &8660942756939619958
 AudioSource:
