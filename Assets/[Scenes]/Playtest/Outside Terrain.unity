@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 219990545}
   - component: {fileID: 219990544}
   m_Layer: 0
-  m_Name: Audio Manager
+  m_Name: RainSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,7 +267,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 988ec85137c106b48a45cf967513a7de, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.545
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 1
   Mute: 0

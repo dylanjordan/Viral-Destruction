@@ -276,7 +276,7 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
 
         if (footstepTimer <= 0)
         {
-            if (Physics.Raycast(playerCamera.transform.position, Vector3.down, out RaycastHit hit, 3))
+            if (Physics.Raycast(playerCamera.transform.position, Vector3.down, out RaycastHit hit, 7))
             {
                 switch (hit.collider.tag)
                 {
