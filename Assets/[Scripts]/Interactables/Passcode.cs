@@ -9,6 +9,7 @@ public class Passcode : MonoBehaviour
     [SerializeField] private Text uiText = null;
     [SerializeField] private GameObject fadeOutScreen;
     [SerializeField] private GameObject thankYouText;
+    [SerializeField] private GameObject allUI;
 
     private InputManager input;
 
@@ -47,6 +48,7 @@ public class Passcode : MonoBehaviour
             // Correct Code
             fadeOutScreen.SetActive(true);
             thankYouText.SetActive(true);
+            allUI.SetActive(false);
         }
     }
 

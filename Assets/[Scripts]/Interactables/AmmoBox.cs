@@ -17,7 +17,7 @@ public class AmmoBox : Interactable, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        data.AmmoBoxesCollected.TryGetValue(id, out collected);
+        //data.AmmoBoxesCollected.TryGetValue(id, out collected);
         if (collected)
         {
             this.gameObject.SetActive(false);
@@ -29,7 +29,7 @@ public class AmmoBox : Interactable, IDataPersistence
         {
             data.AmmoBoxesCollected.Remove(id);
         }
-        data.AmmoBoxesCollected.Add(id, collected);
+        //data.AmmoBoxesCollected.Add(id, collected);
     }
 
     public GameObject fpsController;

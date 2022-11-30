@@ -7,6 +7,7 @@ public class WeaponADS : MonoBehaviour
     public Vector3 aimPosition;
     public Vector3 aimRotation;
     [SerializeField] private GameObject crosshair;
+    [SerializeField] private GameObject crosshairText;
     public bool isAiming;
 
     //internal privates
@@ -34,12 +35,14 @@ public class WeaponADS : MonoBehaviour
         if (input.GetADSEnable())
         {
             crosshair.SetActive(false);
+            crosshairText.SetActive(false);
             transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * _adsSpeed);
             transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(aimRotation), Time.deltaTime * _adsSpeed);
         }
         else
         {
             crosshair.SetActive(true);
+            crosshairText.SetActive(true);
             transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * _adsSpeed);
             transform.localRotation = Quaternion.Lerp(transform.localRotation, originalRotation, Time.deltaTime * _adsSpeed);
         }

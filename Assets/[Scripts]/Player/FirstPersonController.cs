@@ -77,13 +77,13 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.transform.position = data.playerPosition;
+        //this.transform.position = data.playerPosition;
         //this.currentHealth = data.playerCurrentHealth;
     }
 
     public void SaveData(GameData data)
     {
-        data.playerPosition = this.transform.position;
+        //data.playerPosition = this.transform.position;
         //data.playerCurrentHealth = this.currentHealth;
     }
     // SLIDING PARAMETERS
