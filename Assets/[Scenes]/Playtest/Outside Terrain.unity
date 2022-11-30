@@ -11121,6 +11121,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5391551797851382529, guid: fbb7a34403c0ea74f833d2865ff42ecf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391551797851382588, guid: fbb7a34403c0ea74f833d2865ff42ecf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9faae98cbd703ec42926bfe7003fd766, type: 3}
     - target: {fileID: 5391551797912124635, guid: fbb7a34403c0ea74f833d2865ff42ecf, type: 3}
       propertyPath: m_Layer
       value: 5
