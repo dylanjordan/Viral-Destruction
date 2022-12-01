@@ -19,7 +19,6 @@ public class SeekPlayer : MonoBehaviour
     Rigidbody enemyBody;
     EnemyAI enemyAI;
 
-
     void Start()
     {
         enemyAI = GetComponent<EnemyAI>();
@@ -35,7 +34,6 @@ public class SeekPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (currentTarget != null || fov.canSeePlayer == true)
         {
             enemy.destination = player.position;
@@ -44,8 +42,6 @@ public class SeekPlayer : MonoBehaviour
         {
             enemyAI.Patrol();
         }
-        
-       
     }
 
     void CheckDistance()
@@ -57,12 +53,9 @@ public class SeekPlayer : MonoBehaviour
         {
             currentTarget = player;
             Debug.Log("going to player");
-
-
         }
         else if (distToPlayer <= escapeDist)
         {
-
             currentTarget = null;
             Debug.Log("not going to player");
         }

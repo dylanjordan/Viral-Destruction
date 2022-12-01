@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
-
     NavMeshAgent agent;
 
     public Transform[] waypoints;
@@ -23,7 +22,6 @@ public class EnemyAI : MonoBehaviour
     {
         Patrol();
     }
-
 
     private void UpdatePos()
     {

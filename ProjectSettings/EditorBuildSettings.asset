@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/[Scenes]/SplashScreens/EpilepsySplashScreen.unity
+    guid: 99f4b916285a4134e81a0a413a73ffcd
+  - enabled: 1
+    path: Assets/[Scenes]/SplashScreens/AlphaSplashScreen.unity
+    guid: a789725ec39708840bc2cb70ae42b3ac
+  - enabled: 1
+    path: Assets/[Scenes]/SplashScreens/LogoSplashScreen.unity
+    guid: cd7eec7e241a500498f6136be9416925
+  - enabled: 1
+    path: Assets/[Scenes]/Viral Destruction Menu.unity
+    guid: e3f7a481505eb2b4f8f515d1a3ef31d5
+  - enabled: 1
+    path: Assets/[Scenes]/Playtest/Outside Terrain.unity
+    guid: 9094b7dfd6eec194abaa210e4040a38c
   m_configObjects: {}

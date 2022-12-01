@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-
 public class UnityEdit : MonoBehaviour
 {
     [CustomEditor(typeof(EnemyFOV))]
