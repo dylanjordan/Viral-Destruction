@@ -51,6 +51,7 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
     public static Action<float> OnTakeDamage;
     public static Action<float> OnDamage;
     public static Action<float> OnHeal;
+    [SerializeField] private GameObject deathScreen;
 
     [Header("Jumping Parameters")]
     [SerializeField] private float jumpForce = 8.0f;
@@ -138,6 +139,7 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
         currentHealth = maxHealth;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Time.timeScale = 1;
     }
 
     void Start()
@@ -319,7 +321,11 @@ public class FirstPersonController : MonoBehaviour, IDataPersistence
         if (regeneratingHealth != null)
             StopCoroutine(regeneratingHealth);
 
-        print("DEAD");
+        CanMove = false;
+        Time.timeScale = 0;
+        deathScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void ApplyFinalMovements()
